@@ -48,8 +48,29 @@ jobs:
           echo GIT_COMMIT_SUBJECT=`git show -s --pretty=%s` >> GIT_COMMIT_INFO.prop
           echo GIT_COMMIT_SHORTENED=`echo ${GITHUB_SHA} | cut -c1-7` >> GIT_COMMIT_INFO.prop
       - name: Save develop information if it's the case
-      
-                vendor/*.tar.gz
+        if: ${{ github.ref == 'refs/heads/develop' }}
+        run: |
+          echo "DEVELOP_BRANCH=true" > DEVELOP_BRANCH.prop
+      - name: Get node dependencies
+        run: |
+          yarn install --frozen-lockfile --ignore-engines
+      - name: Run tests
+        run: |
+          cp example.env .env
+          yarn test
+      - name: Generate artifact
+        run: |
+          npm install strong-build
+          TARBALL=`node_modules/.bin/sl-build --install --pack --scripts|grep Packing|cut -f2 -d\/`
+          mkdir vendor
+          mv ../${TARBALL} vendor/`echo ${TARBALL}|sed s/tgz/tar.gz/`
+      - name: upload artifacts
+        if: github.event_name == 'push'
+        uses: actions/upload-artifact@v2
+        with:
+          name: build-artifact
+          path: |
+            vendor/*.tar.gz
   post_build:
     runs-on: ubuntu-latest
     needs: build
