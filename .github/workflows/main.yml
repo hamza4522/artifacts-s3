@@ -22,9 +22,9 @@ env:
 
 jobs:
   build:
-   if: ${{ github.event_name == 'push' && contains('${{ env.branch_name }}', '.')}}
-   runs-on: ubuntu-latest
-   steps:
+    if: ${{ github.event_name == 'push' && contains('${{ env.branch_name }}', '.')}}
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/checkout@v2
         with:
           persist-credentials: false
