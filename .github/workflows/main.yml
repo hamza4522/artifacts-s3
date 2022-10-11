@@ -22,7 +22,7 @@ env:
 
 jobs:
   build:
-    if: ${{ github.event_name == 'push' && contains('${{ env.branch_name }}', '.')}}
+    if: ${{ github.event_name == 'push' && contains('${{ env.branch_name }}', '.')}} || ${{ github.event.issue.pull_request && github.event.review.state == 'approved'}}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -39,7 +39,6 @@ jobs:
       - run: echo build job will be added later
   post_build:
     runs-on: ubuntu-latest
-    if: ${{ github.event.issue.pull_request && github.event.review.state == 'approved'}}
     needs: build
     steps:
       - name: Download package
