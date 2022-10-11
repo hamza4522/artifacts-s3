@@ -10,6 +10,8 @@ on:
      - master
      - develop
      - '[0-9][0-9][0-9][0-9].[0-9x]'
+   types:
+     - closed  
  
   workflow_dispatch:   
 env:
@@ -22,7 +24,7 @@ env:
 
 jobs:
   build:
-    if: ${{ github.event_name == 'push' && contains('${{ env.branch_name }}', '.')}} || ${{ github.event.issue.pull_request && github.event.review.state == 'approved'}}
+    if: ${{ github.event_name == 'push' && contains('${{ env.branch_name }}', '.')}}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -39,7 +41,7 @@ jobs:
       - run: echo build job will be added later
   post_build:
     runs-on: ubuntu-latest
-    if: github.event.issue.pull_request
+    if: ${{ github.event.pull_request.merged == true }}
     needs: build
     steps:
       - name: Download package
