@@ -10,8 +10,7 @@ on:
      - master
      - develop
      - '[0-9][0-9][0-9][0-9].[0-9x]'
-   types:
-     - closed
+     
   workflow_dispatch:   
 env:
   S3_BUCKET: test-prd-hamza
