@@ -23,8 +23,24 @@ env:
   SOURCE_FILETYPE: zip    
 
 jobs:
-  build:
+  build_test:
     if: ${{ github.event_name == 'push' && contains('${{ env.branch_name }}', '.')}}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: Use Node.js version 8.17.0
+        uses: actions/setup-node@v3
+        with:
+          node-version: 8.17.0
+          
+      - run: node --version
+      - run: npm --version
+      - run: echo build job will be added later
+  build:
+    if: ${{ github.event.pull_request.merged == true }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -41,7 +57,6 @@ jobs:
       - run: echo build job will be added later
   post_build:
     runs-on: ubuntu-latest
-    if: ${{ github.event.pull_request.merged == true }}
     needs: build
     steps:
       - name: Download package
