@@ -18,7 +18,7 @@ env:
   OBJECT_PREFIX: code
   S3_BUCKET_PREFIX: "${S3_BUCKET}/${OBJECT_PREFIX}"
   CODE_TYPE: scala
-  SOURCE_FILETYPE: tar.gz     
+  SOURCE_FILETYPE: zip  
 
 jobs:
   build:
