@@ -38,8 +38,8 @@ jobs:
       - run: npm --version
       - run: echo build job will be added later
   post_build:
-    if: ${{ github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
     needs: build
     steps:
       - name: Download package
