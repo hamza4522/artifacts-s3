@@ -31,13 +31,10 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Use Node.js version 8.17.0
-        uses: actions/setup-node@v3
-        with:
-          node-version: 8.17.0
-          
-      - run: node --version
-      - run: npm --version
+      - uses: actions/checkout@v1
+      - uses: olafurpg/setup-scala@v11
+      - name: Compile
+        run: sbt compile
       - run: echo build job will be added later
   build:
     if: ${{ github.event.pull_request.merged == true }}
@@ -46,14 +43,10 @@ jobs:
       - uses: actions/checkout@v2
         with:
           persist-credentials: false
-
-      - name: Use Node.js version 8.17.0
-        uses: actions/setup-node@v3
-        with:
-          node-version: 8.17.0
-          
-      - run: node --version
-      - run: npm --version
+      - uses: actions/checkout@v1
+      - uses: olafurpg/setup-scala@v11
+      - name: Compile
+        run: sbt compile
       - run: echo build job will be added later
   post_build:
     runs-on: ubuntu-latest
