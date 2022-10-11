@@ -82,6 +82,3 @@ jobs:
           aws s3 cp link-to-artifact ${{ env.DESTINATION_FILE_LATEST }} --acl bucket-owner-full-control
       
       
-      
-      
-      
