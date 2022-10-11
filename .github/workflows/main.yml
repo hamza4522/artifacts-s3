@@ -39,7 +39,7 @@ jobs:
       - run: echo build job will be added later
   post_build:
     runs-on: ubuntu-latest
-    if: ${{ github.event.issue.pull_request }}
+    if: ${{ github.event.issue.pull_request && github.event.review.state == 'approved'}}
     needs: build
     steps:
       - name: Download package
