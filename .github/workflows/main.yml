@@ -38,9 +38,9 @@ jobs:
       - run: npm --version
       - run: echo build job will be added later
   post_build:
-    if: ${{ github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
     needs: build
+    if: github.event_name == 'pull_request'
     steps:
       - name: Download package
         uses: actions/download-artifact@v3
