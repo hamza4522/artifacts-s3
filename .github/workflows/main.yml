@@ -39,7 +39,7 @@ jobs:
       - run: echo build job will be added later
   post_build:
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
+    if: ${{ github.event.issue.pull_request }}
     needs: build
     steps:
       - name: Download package
@@ -49,7 +49,7 @@ jobs:
 
       - name: Prepare package
         run: |
-          mv *.tar.gz "${GITHUB_SHA}.tar.gz"
+          mv *.zip "${GITHUB_SHA}.zip"
       - name: Prepare artifact location and link before uploading
         run: |
           # get repository name
