@@ -17,7 +17,7 @@ env:
   S3_BUCKET: test-prd-hamza
   OBJECT_PREFIX: code
   S3_BUCKET_PREFIX: "${S3_BUCKET}/${OBJECT_PREFIX}"
-  CODE_TYPE: node
+  CODE_TYPE: scala
   SOURCE_FILETYPE: tar.gz     
 
 jobs:
@@ -35,43 +35,8 @@ jobs:
           node-version: 8.17.0
           
       - run: node --version
-
       - run: npm --version
-
-      - name: fetch submodules
-        run: |
-          git submodule init
-          git submodule update
-      - name: Build commit information
-        run: |
-          echo GIT_COMMITTER_NAME=`git show -s --pretty=%an` > GIT_COMMIT_INFO.prop
-          echo GIT_COMMITTER_EMAIL=`git show -s --pretty=%ae` >> GIT_COMMIT_INFO.prop
-          echo GIT_COMMIT_SUBJECT=`git show -s --pretty=%s` >> GIT_COMMIT_INFO.prop
-          echo GIT_COMMIT_SHORTENED=`echo ${GITHUB_SHA} | cut -c1-7` >> GIT_COMMIT_INFO.prop
-      - name: Save develop information if it's the case
-        if: ${{ github.ref == 'refs/heads/develop' }}
-        run: |
-          echo "DEVELOP_BRANCH=true" > DEVELOP_BRANCH.prop
-      - name: Get node dependencies
-        run: |
-          yarn install --frozen-lockfile --ignore-engines
-      - name: Run tests
-        run: |
-          cp example.env .env
-          yarn test
-      - name: Generate artifact
-        run: |
-          npm install strong-build
-          TARBALL=`node_modules/.bin/sl-build --install --pack --scripts|grep Packing|cut -f2 -d\/`
-          mkdir vendor
-          mv ../${TARBALL} vendor/`echo ${TARBALL}|sed s/tgz/tar.gz/`
-      - name: upload artifacts
-        if: github.event_name == 'push'
-        uses: actions/upload-artifact@v2
-        with:
-          name: build-artifact
-          path: |
-            vendor/*.tar.gz
+      - run: echo build job will be added later
   post_build:
     if: ${{ github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
