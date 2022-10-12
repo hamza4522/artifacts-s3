@@ -24,8 +24,7 @@ env:
 
 jobs:
   push_build:
-    #if: ${{ github.event_name == 'push' && contains('${{ env.branch_name }}', '.')}} || ${{ github.event.pull_request.merged == true }}
-    if: ${{ github.event_name == 'push'}} 
+    if: ${{ github.event_name == 'push' }} || ${{ github.event.pull_request.merged == true }} 
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
