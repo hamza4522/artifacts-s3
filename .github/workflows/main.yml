@@ -35,8 +35,9 @@ jobs:
       - uses: olafurpg/setup-scala@v11
       - name: Compile
         run: |
-          sbt compile
-          echo build job will be added later
+            echo build job will be added later
+          # sbt compile
+          
   pull_build:
     if: ${{ github.event.pull_request.merged == true }}
     runs-on: ubuntu-latest
@@ -48,8 +49,8 @@ jobs:
       - uses: olafurpg/setup-scala@v11
       - name: Compile
         run: |
-          sbt compile
-          echo build job will be added later
+            echo build job will be added later
+          # sbt compile
   post_build:
     runs-on: ubuntu-latest
     needs: pull_build
