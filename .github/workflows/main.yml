@@ -15,7 +15,7 @@ on:
  
   workflow_dispatch:   
 env:
-  S3_BUCKET: test-prd-hamza
+  S3_BUCKET: locker-s3-bucket
   branch_name: ${{ github.head_ref }}
   OBJECT_PREFIX: code
   S3_BUCKET_PREFIX: "${S3_BUCKET}/${OBJECT_PREFIX}"
