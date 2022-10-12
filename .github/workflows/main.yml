@@ -7,11 +7,11 @@ on:
        - '[0-9][0-9][0-9][0-9].[0-9x]'
   pull_request:
    branches:
-     - master
-     - develop
-     - '[0-9][0-9][0-9][0-9].[0-9x]'
+       - master
+       - develop
+       - '[0-9][0-9][0-9][0-9].[0-9x]'
    types:
-     - closed  
+       - closed  
  
   workflow_dispatch:   
 env:
@@ -86,5 +86,4 @@ jobs:
       - name: Upload latest link to artifact
         run: |
           aws s3 cp link-to-artifact ${{ env.DESTINATION_FILE_LATEST }} --acl bucket-owner-full-control
-      
       
