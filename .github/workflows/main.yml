@@ -27,7 +27,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with: 
-         ref: 1702.x
+         ref: master
       - uses: olafurpg/setup-scala@v11
       - name: Compile
         run: | 
