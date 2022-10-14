@@ -20,8 +20,24 @@ jobs:
       - run: echo ${{ github.repository }}
       - run: echo ${GITHUB_ACTOR}
       - run: echo ${GITHUB_REPOSITORY_OWNER}
-      - run: ${GITHUB_REF}
-      - run: ${GITHUB_REF_NAME}
+      - run: ${GITHUB_REF_TYPE}
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   #   - run: ${GITHUB_REF}
+    #  - run: ${GITHUB_REF_NAME}
           
 
 #       - name: Use Node.js version 8.17.0
