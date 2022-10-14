@@ -26,9 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        with:
-         repository: Orgn1-Global/artifacts-s3
-         path: 1702.x  
+        with: 
          ref: 1702.x
       - uses: olafurpg/setup-scala@v11
       - name: Compile
