@@ -27,16 +27,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          persist-credentials: false
+          path: 1702.x
 
       - name: Use Node.js version 8.17.0
         uses: actions/setup-node@v3
         with:
           node-version: 8.17.0
           
-      - run: node --version
-      - run: npm --version
-      - run: echo build job will be added later
+     # - run: node --version
+      #- run: npm --version
+      - run: echo ${GITHUB_REF#refs/heads/}
   post_build:
     runs-on: ubuntu-latest
     if: ${{ github.event.issue.pull_request && github.event.review.state == 'approved'}}
