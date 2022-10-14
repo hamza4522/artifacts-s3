@@ -29,7 +29,7 @@ jobs:
       - name: Compile
         run: | 
           echo This would run if dependencies for publisher met
-          echo sbt compile
+          echo ${GITHUB_REF#refs/heads/}
           
   post_build:
     runs-on: ubuntu-latest
