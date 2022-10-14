@@ -31,7 +31,7 @@ jobs:
       - uses: olafurpg/setup-scala@v11
       - name: Compile
         run: | 
-          echo This would run if dependencies for publisher met
+          echo This would run if dependencies for publisher met-hello
           echo ${GITHUB_REF#refs/heads/}
           
   post_build:
