@@ -26,6 +26,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+         path: 1702.x
       - uses: olafurpg/setup-scala@v11
       - name: Compile
         run: | 
