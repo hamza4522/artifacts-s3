@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: echo ${{ github.repository }}
-      - run: echo ${{ GITHUB_ACTOR	}}
+      - run: echo ${GITHUB_ACTOR}
       
 
           
